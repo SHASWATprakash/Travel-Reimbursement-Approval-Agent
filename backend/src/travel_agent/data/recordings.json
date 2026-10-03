@@ -1,0 +1,1488 @@
+{
+  "CLM-001": {
+    "source": "live-local-ollama",
+    "captured_at": "2026-10-02T19:48:37.478084+00:00",
+    "model": "qwen3.5:4b",
+    "contract_hash": "7d6e9ec97f506589b7a89b96c27860ce4d6abffd89811baf52955b8b8e61f1e7",
+    "turns": [
+      {
+        "turn": 1,
+        "input_hash": "2c1abf06ea20f8791eb006d7d80e6fba6993c4615e502f7b740f1e5001c30ba3",
+        "available_tools": [
+          "lookup_policy"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "lookup_policy",
+            "args": {
+              "claim_id": "CLM-001"
+            },
+            "id": "c687e54f-65de-47e1-934f-a412f138ded7",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 4361.73,
+        "token_usage": {
+          "prompt_eval_count": 891,
+          "eval_count": 33
+        }
+      },
+      {
+        "turn": 2,
+        "input_hash": "25df08d77371c62e09cfab66f049b352af516c02de0da94788d1b6f742337a39",
+        "available_tools": [
+          "calculate_limits",
+          "check_approval_threshold",
+          "check_eligibility",
+          "check_receipts",
+          "check_timeliness"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "check_eligibility",
+            "args": {
+              "claim_id": "CLM-001"
+            },
+            "id": "4b3752b8-a886-49d1-8826-b4a3c52699e6",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_receipts",
+            "args": {
+              "claim_id": "CLM-001"
+            },
+            "id": "7cd8abcd-b516-4134-bfa7-c053c868bcb7",
+            "type": "tool_call"
+          },
+          {
+            "name": "calculate_limits",
+            "args": {
+              "claim_id": "CLM-001"
+            },
+            "id": "b80f95b1-abf4-41a3-819d-946fb392df0c",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_approval_threshold",
+            "args": {
+              "claim_id": "CLM-001"
+            },
+            "id": "6d29e381-64f4-45f0-ae24-00300ae62491",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_timeliness",
+            "args": {
+              "claim_id": "CLM-001"
+            },
+            "id": "8326efe9-d42e-417a-9340-aa8f71df1682",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 14520.85,
+        "token_usage": {
+          "prompt_eval_count": 2022,
+          "eval_count": 170
+        }
+      },
+      {
+        "turn": 3,
+        "input_hash": "9a67911ede096630ef323e48bc40f5ca27b38dec0f91b47ab35fa89f58de3233",
+        "available_tools": [
+          "submit_recommendation"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "submit_recommendation",
+            "args": {
+              "decision": "APPROVE",
+              "approved_amount": 1110,
+              "deducted_amount": 0,
+              "policy_refs": [
+                "POL-CAT-01",
+                "POL-AIR-01",
+                "POL-PD-01",
+                "POL-PD-02",
+                "POL-RCT-01",
+                "POL-APR-02",
+                "POL-TIME-01"
+              ],
+              "reason_codes": [
+                "POLICY_COMPLIANT"
+              ],
+              "summary": "All items eligible with complete receipts; all within per-diem caps; manager-tier claim fully compliant."
+            },
+            "id": "48adf945-e756-40cb-bd34-449966122de4",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 16209.99,
+        "token_usage": {
+          "prompt_eval_count": 2495,
+          "eval_count": 185
+        }
+      }
+    ],
+    "tool_outputs": [
+      {
+        "name": "lookup_policy",
+        "arguments": {
+          "claim_id": "CLM-001"
+        },
+        "output": {
+          "policy_version": "b24d00b102c185fdfca2f07407da4287276391568cf8e6b9f081874c5533260c",
+          "rules": {
+            "POL-CAT-01": "Eligible categories \u2014 Reimbursable when incurred for a documented business purpose: Airfare (economy class only \u2014 see POL-AIR-01); Lodging (hotel room charges); Meals (subject to per-diem limits \u2014 see POL-PD-01); Ground transport (taxi, rideshare, train, rental car, parking); Conference / registration fees.",
+            "POL-CAT-02": "Ineligible items \u2014 Never reimbursable; rejected (deducted in full): Alcohol and minibar charges; Spa, gym, and personal entertainment; In-room movies, personal shopping, gifts; Traffic fines, penalties, and late fees; Any personal (non-business) expense.",
+            "POL-PD-01": "Meals \u2014 Maximum $75 per day. Amounts above the daily cap are deducted; the rest is reimbursed.",
+            "POL-PD-02": "Lodging \u2014 Maximum $200 per night. Amounts above the nightly cap are deducted; the rest is reimbursed.",
+            "POL-PD-03": "Ground transport \u2014 Maximum $50 per day. Amounts above the cap are deducted.",
+            "POL-AIR-01": "Airfare class \u2014 Only economy class airfare is reimbursable. Business/first-class fares are a policy exception and must be routed to Manual Review (not auto-deducted, because a pre-approval may exist).",
+            "POL-RCT-01": "Receipt required above $25 \u2014 Any single line item greater than $25 requires an attached, itemized receipt. Airfare and lodging always require a receipt regardless of amount.",
+            "POL-RCT-02": "Missing receipt handling \u2014 If a receipt is missing for an item that requires one, the item is not silently rejected \u2014 the claim is routed to Manual Review so the reviewer can request the receipt.",
+            "POL-APR-01": "Auto-approve tier \u2014 Total \u2264 $500: may be auto-approved by the agent if fully compliant.",
+            "POL-APR-02": "Manager tier \u2014 Total > $500 and \u2264 $2,000: eligible for approval, treated as approvable when fully compliant.",
+            "POL-APR-03": "Director / Manual-Review tier \u2014 Total > $2,000: exceeds the agent's auto-approval authority and must be routed to Manual Review (director approval required), even if otherwise compliant.",
+            "POL-TIME-01": "Submission window \u2014 Claims must be submitted within 30 days of the expense date. Late claims are routed to Manual Review."
+          },
+          "decision_guidance": "Approve: every item eligible, all receipts present, all within per-diem, total within an approvable tier. Partially Approve: claim valid but some amounts exceed caps; reimburse up to the cap. Reject: items ineligible with nothing reimbursable. Manual Review: any ambiguity, policy exception, high value, missing required receipt, or conflicting information. Prefer Manual Review over forcing a decision. Approval thresholds use reimbursable amounts after deductions."
+        }
+      },
+      {
+        "name": "check_eligibility",
+        "arguments": {
+          "claim_id": "CLM-001"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-CAT-01",
+            "POL-AIR-01"
+          ]
+        }
+      },
+      {
+        "name": "check_receipts",
+        "arguments": {
+          "claim_id": "CLM-001"
+        },
+        "output": {
+          "missing_docs": [],
+          "findings": [],
+          "policy_refs": [
+            "POL-RCT-01"
+          ]
+        }
+      },
+      {
+        "name": "calculate_limits",
+        "arguments": {
+          "claim_id": "CLM-001"
+        },
+        "output": {
+          "lines": [
+            {
+              "item_id": "I1",
+              "category": "airfare",
+              "claimed": 420.0,
+              "provisional_allowed": 420.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": []
+            },
+            {
+              "item_id": "I2",
+              "category": "lodging",
+              "claimed": 360.0,
+              "provisional_allowed": 360.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": [
+                "POL-PD-02"
+              ]
+            },
+            {
+              "item_id": "I3",
+              "category": "meals",
+              "claimed": 180.0,
+              "provisional_allowed": 180.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": [
+                "POL-PD-01"
+              ]
+            },
+            {
+              "item_id": "I4",
+              "category": "conference_fees",
+              "claimed": 150.0,
+              "provisional_allowed": 150.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": []
+            }
+          ],
+          "provisional_allowed": 1110.0,
+          "provisional_deducted": 0.0,
+          "findings": [],
+          "policy_refs": [
+            "POL-PD-01",
+            "POL-PD-02"
+          ]
+        }
+      },
+      {
+        "name": "check_approval_threshold",
+        "arguments": {
+          "claim_id": "CLM-001"
+        },
+        "output": {
+          "tier": "MANAGER",
+          "candidate_amount": 1110.0,
+          "findings": [],
+          "policy_refs": [
+            "POL-APR-02"
+          ]
+        }
+      },
+      {
+        "name": "check_timeliness",
+        "arguments": {
+          "claim_id": "CLM-001"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-TIME-01"
+          ]
+        }
+      }
+    ],
+    "result": {
+      "claim_id": "CLM-001",
+      "decision": "APPROVE",
+      "approved_amount": 1110.0,
+      "deducted_amount": 0.0,
+      "missing_docs": [],
+      "policy_refs": [
+        "POL-AIR-01",
+        "POL-APR-02",
+        "POL-CAT-01",
+        "POL-PD-01",
+        "POL-PD-02",
+        "POL-RCT-01",
+        "POL-TIME-01"
+      ],
+      "confidence": 0.95,
+      "explanation": "POLICY_COMPLIANT: All items are eligible, documented, timely and within limits; $1110.00 is approvable in the manager tier. (POL-AIR-01, POL-APR-02, POL-CAT-01, POL-PD-01, POL-PD-02, POL-RCT-01, POL-TIME-01)",
+      "tools_used": [
+        "lookup_policy",
+        "check_eligibility",
+        "check_receipts",
+        "calculate_limits",
+        "check_approval_threshold",
+        "check_timeliness"
+      ]
+    },
+    "recorded_duration_ms": 35135.87
+  },
+  "CLM-002": {
+    "source": "live-local-ollama",
+    "captured_at": "2026-10-02T19:50:10.316571+00:00",
+    "model": "qwen3.5:4b",
+    "contract_hash": "1659580d0676084094e3a1ddbf6b2150b5ab5f387b24b35415b7deb7f280c1d9",
+    "turns": [
+      {
+        "turn": 1,
+        "input_hash": "a299da8047deb3bf0a69607c891a3de2437254f4265290dace81611ec5b113e3",
+        "available_tools": [
+          "lookup_policy"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "lookup_policy",
+            "args": {
+              "claim_id": "CLM-002"
+            },
+            "id": "dbbe891f-f7d8-4022-ae14-8628e7a695bf",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 3133.23,
+        "token_usage": {
+          "prompt_eval_count": 735,
+          "eval_count": 33
+        }
+      },
+      {
+        "turn": 2,
+        "input_hash": "f64a072652572c269bd764588469c049018461805bd814d884dde2e3dc610665",
+        "available_tools": [
+          "calculate_limits",
+          "check_approval_threshold",
+          "check_eligibility",
+          "check_receipts",
+          "check_timeliness"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "check_eligibility",
+            "args": {
+              "claim_id": "CLM-002"
+            },
+            "id": "5a8cf1a4-63ff-476f-aff3-797566dbdcee",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_receipts",
+            "args": {
+              "claim_id": "CLM-002"
+            },
+            "id": "d7ddfe7b-8a0d-410c-a527-9a7e58187b9c",
+            "type": "tool_call"
+          },
+          {
+            "name": "calculate_limits",
+            "args": {
+              "claim_id": "CLM-002"
+            },
+            "id": "9966f5c1-584e-4371-b0c7-f630b976d646",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_approval_threshold",
+            "args": {
+              "claim_id": "CLM-002"
+            },
+            "id": "2a980bc6-5bf4-4f96-9545-f9bbc05baa93",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_timeliness",
+            "args": {
+              "claim_id": "CLM-002"
+            },
+            "id": "d8200670-ef42-4074-b50e-9ba8b87da00d",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 15295.17,
+        "token_usage": {
+          "prompt_eval_count": 1866,
+          "eval_count": 170
+        }
+      },
+      {
+        "turn": 3,
+        "input_hash": "2426dbe02b1f044ed2fedde69db533fd32df220140bdee44937c0bd56351244b",
+        "available_tools": [
+          "submit_recommendation"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "submit_recommendation",
+            "args": {
+              "decision": "REJECT",
+              "approved_amount": 0,
+              "deducted_amount": 380,
+              "policy_refs": [
+                "POL-CAT-02"
+              ],
+              "reason_codes": [
+                "INELIGIBLE_EXPENSE"
+              ],
+              "summary": "Spa and minibar charges are ineligible per POL-CAT-02; both items fully deducted."
+            },
+            "id": "c4e501a4-c055-4dbc-a86f-2399ae4c8532",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 13997.16,
+        "token_usage": {
+          "prompt_eval_count": 2313,
+          "eval_count": 131
+        }
+      }
+    ],
+    "tool_outputs": [
+      {
+        "name": "lookup_policy",
+        "arguments": {
+          "claim_id": "CLM-002"
+        },
+        "output": {
+          "policy_version": "b24d00b102c185fdfca2f07407da4287276391568cf8e6b9f081874c5533260c",
+          "rules": {
+            "POL-CAT-01": "Eligible categories \u2014 Reimbursable when incurred for a documented business purpose: Airfare (economy class only \u2014 see POL-AIR-01); Lodging (hotel room charges); Meals (subject to per-diem limits \u2014 see POL-PD-01); Ground transport (taxi, rideshare, train, rental car, parking); Conference / registration fees.",
+            "POL-CAT-02": "Ineligible items \u2014 Never reimbursable; rejected (deducted in full): Alcohol and minibar charges; Spa, gym, and personal entertainment; In-room movies, personal shopping, gifts; Traffic fines, penalties, and late fees; Any personal (non-business) expense.",
+            "POL-PD-01": "Meals \u2014 Maximum $75 per day. Amounts above the daily cap are deducted; the rest is reimbursed.",
+            "POL-PD-02": "Lodging \u2014 Maximum $200 per night. Amounts above the nightly cap are deducted; the rest is reimbursed.",
+            "POL-PD-03": "Ground transport \u2014 Maximum $50 per day. Amounts above the cap are deducted.",
+            "POL-AIR-01": "Airfare class \u2014 Only economy class airfare is reimbursable. Business/first-class fares are a policy exception and must be routed to Manual Review (not auto-deducted, because a pre-approval may exist).",
+            "POL-RCT-01": "Receipt required above $25 \u2014 Any single line item greater than $25 requires an attached, itemized receipt. Airfare and lodging always require a receipt regardless of amount.",
+            "POL-RCT-02": "Missing receipt handling \u2014 If a receipt is missing for an item that requires one, the item is not silently rejected \u2014 the claim is routed to Manual Review so the reviewer can request the receipt.",
+            "POL-APR-01": "Auto-approve tier \u2014 Total \u2264 $500: may be auto-approved by the agent if fully compliant.",
+            "POL-APR-02": "Manager tier \u2014 Total > $500 and \u2264 $2,000: eligible for approval, treated as approvable when fully compliant.",
+            "POL-APR-03": "Director / Manual-Review tier \u2014 Total > $2,000: exceeds the agent's auto-approval authority and must be routed to Manual Review (director approval required), even if otherwise compliant.",
+            "POL-TIME-01": "Submission window \u2014 Claims must be submitted within 30 days of the expense date. Late claims are routed to Manual Review."
+          },
+          "decision_guidance": "Approve: every item eligible, all receipts present, all within per-diem, total within an approvable tier. Partially Approve: claim valid but some amounts exceed caps; reimburse up to the cap. Reject: items ineligible with nothing reimbursable. Manual Review: any ambiguity, policy exception, high value, missing required receipt, or conflicting information. Prefer Manual Review over forcing a decision. Approval thresholds use reimbursable amounts after deductions."
+        }
+      },
+      {
+        "name": "check_eligibility",
+        "arguments": {
+          "claim_id": "CLM-002"
+        },
+        "output": {
+          "findings": [
+            {
+              "code": "INELIGIBLE_EXPENSE",
+              "message": "I1: spa is deducted in full ($300.00).",
+              "policy_refs": [
+                "POL-CAT-02"
+              ],
+              "item_ids": [
+                "I1"
+              ],
+              "review": false
+            },
+            {
+              "code": "INELIGIBLE_EXPENSE",
+              "message": "I2: minibar is deducted in full ($80.00).",
+              "policy_refs": [
+                "POL-CAT-02"
+              ],
+              "item_ids": [
+                "I2"
+              ],
+              "review": false
+            }
+          ],
+          "policy_refs": [
+            "POL-CAT-02"
+          ]
+        }
+      },
+      {
+        "name": "check_receipts",
+        "arguments": {
+          "claim_id": "CLM-002"
+        },
+        "output": {
+          "missing_docs": [],
+          "findings": [],
+          "policy_refs": [
+            "POL-RCT-01"
+          ]
+        }
+      },
+      {
+        "name": "calculate_limits",
+        "arguments": {
+          "claim_id": "CLM-002"
+        },
+        "output": {
+          "lines": [
+            {
+              "item_id": "I1",
+              "category": "spa",
+              "claimed": 300.0,
+              "provisional_allowed": 0.0,
+              "provisional_deducted": 300.0,
+              "policy_refs": [
+                "POL-CAT-02"
+              ]
+            },
+            {
+              "item_id": "I2",
+              "category": "minibar",
+              "claimed": 80.0,
+              "provisional_allowed": 0.0,
+              "provisional_deducted": 80.0,
+              "policy_refs": [
+                "POL-CAT-02"
+              ]
+            }
+          ],
+          "provisional_allowed": 0.0,
+          "provisional_deducted": 380.0,
+          "findings": [],
+          "policy_refs": [
+            "POL-CAT-02"
+          ]
+        }
+      },
+      {
+        "name": "check_approval_threshold",
+        "arguments": {
+          "claim_id": "CLM-002"
+        },
+        "output": {
+          "tier": "AUTO",
+          "candidate_amount": 0.0,
+          "findings": [],
+          "policy_refs": [
+            "POL-APR-01"
+          ]
+        }
+      },
+      {
+        "name": "check_timeliness",
+        "arguments": {
+          "claim_id": "CLM-002"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-TIME-01"
+          ]
+        }
+      }
+    ],
+    "result": {
+      "claim_id": "CLM-002",
+      "decision": "REJECT",
+      "approved_amount": 0.0,
+      "deducted_amount": 380.0,
+      "missing_docs": [],
+      "policy_refs": [
+        "POL-APR-01",
+        "POL-CAT-02",
+        "POL-RCT-01",
+        "POL-TIME-01"
+      ],
+      "confidence": 0.95,
+      "explanation": "INELIGIBLE_EXPENSE: I1: spa is deducted in full ($300.00). (POL-CAT-02) INELIGIBLE_EXPENSE: I2: minibar is deducted in full ($80.00). (POL-CAT-02) Final recommendation: REJECT; $0.00 approved and $380.00 deducted. Supporting checks: POL-APR-01, POL-CAT-02, POL-RCT-01, POL-TIME-01.",
+      "tools_used": [
+        "lookup_policy",
+        "check_eligibility",
+        "check_receipts",
+        "calculate_limits",
+        "check_approval_threshold",
+        "check_timeliness"
+      ]
+    },
+    "recorded_duration_ms": 32469.65
+  },
+  "CLM-003": {
+    "source": "live-local-ollama",
+    "captured_at": "2026-10-02T19:53:51.727271+00:00",
+    "model": "qwen3.5:4b",
+    "contract_hash": "c5ef657d2e9e365d612a8752d24c3b8e3ca7e79c49790f29c7ec763bbfc3ff1a",
+    "turns": [
+      {
+        "turn": 1,
+        "input_hash": "19cdd07a430d0212c095d5a9469f7ecb71b9e84452456a56e75d2314cc104ed6",
+        "available_tools": [
+          "lookup_policy"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "lookup_policy",
+            "args": {
+              "claim_id": "CLM-003"
+            },
+            "id": "49b852ba-af12-40d2-8bcb-93b19367c8b4",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 4011.52,
+        "token_usage": {
+          "prompt_eval_count": 823,
+          "eval_count": 33
+        }
+      },
+      {
+        "turn": 2,
+        "input_hash": "3837277c1d19fb6bd2c6d204cd8771d523c39cf79ed1069a483253b0e1bd4c9c",
+        "available_tools": [
+          "calculate_limits",
+          "check_approval_threshold",
+          "check_eligibility",
+          "check_receipts",
+          "check_timeliness"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "check_eligibility",
+            "args": {
+              "claim_id": "CLM-003"
+            },
+            "id": "3343fa4a-79a9-467d-9069-d14136da47d1",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_receipts",
+            "args": {
+              "claim_id": "CLM-003"
+            },
+            "id": "1e0a8b9e-1f7e-4437-90fa-a51531301bde",
+            "type": "tool_call"
+          },
+          {
+            "name": "calculate_limits",
+            "args": {
+              "claim_id": "CLM-003"
+            },
+            "id": "859a2c40-87ad-4e60-8258-ab6efdb09af1",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_approval_threshold",
+            "args": {
+              "claim_id": "CLM-003"
+            },
+            "id": "42c56850-f430-4b2b-b353-f81cd9458845",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_timeliness",
+            "args": {
+              "claim_id": "CLM-003"
+            },
+            "id": "0cdcb371-8c7a-44ab-9b72-42d5f8a13bfc",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 14822.7,
+        "token_usage": {
+          "prompt_eval_count": 1954,
+          "eval_count": 170
+        }
+      },
+      {
+        "turn": 3,
+        "input_hash": "3714d33e3547c0f0cd22cc0e08969a4f50885174189de15e79d538a428b583f7",
+        "available_tools": [
+          "submit_recommendation"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "submit_recommendation",
+            "args": {
+              "decision": "PARTIAL_APPROVE",
+              "approved_amount": 840,
+              "deducted_amount": 100,
+              "policy_refs": [
+                "POL-CAT-01",
+                "POL-AIR-01",
+                "POL-PD-01",
+                "POL-PD-02",
+                "POL-RCT-01",
+                "POL-APR-02",
+                "POL-TIME-01"
+              ],
+              "reason_codes": [
+                "LIMIT_EXCEEDED"
+              ],
+              "summary": "Claim compliant except lodging exceeds $200/night cap; approved at $840, deducted $100 excess."
+            },
+            "id": "a9d22235-cd6e-44da-b3a3-18ee06aca778",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 16335.58,
+        "token_usage": {
+          "prompt_eval_count": 2449,
+          "eval_count": 191
+        }
+      }
+    ],
+    "tool_outputs": [
+      {
+        "name": "lookup_policy",
+        "arguments": {
+          "claim_id": "CLM-003"
+        },
+        "output": {
+          "policy_version": "b24d00b102c185fdfca2f07407da4287276391568cf8e6b9f081874c5533260c",
+          "rules": {
+            "POL-CAT-01": "Eligible categories \u2014 Reimbursable when incurred for a documented business purpose: Airfare (economy class only \u2014 see POL-AIR-01); Lodging (hotel room charges); Meals (subject to per-diem limits \u2014 see POL-PD-01); Ground transport (taxi, rideshare, train, rental car, parking); Conference / registration fees.",
+            "POL-CAT-02": "Ineligible items \u2014 Never reimbursable; rejected (deducted in full): Alcohol and minibar charges; Spa, gym, and personal entertainment; In-room movies, personal shopping, gifts; Traffic fines, penalties, and late fees; Any personal (non-business) expense.",
+            "POL-PD-01": "Meals \u2014 Maximum $75 per day. Amounts above the daily cap are deducted; the rest is reimbursed.",
+            "POL-PD-02": "Lodging \u2014 Maximum $200 per night. Amounts above the nightly cap are deducted; the rest is reimbursed.",
+            "POL-PD-03": "Ground transport \u2014 Maximum $50 per day. Amounts above the cap are deducted.",
+            "POL-AIR-01": "Airfare class \u2014 Only economy class airfare is reimbursable. Business/first-class fares are a policy exception and must be routed to Manual Review (not auto-deducted, because a pre-approval may exist).",
+            "POL-RCT-01": "Receipt required above $25 \u2014 Any single line item greater than $25 requires an attached, itemized receipt. Airfare and lodging always require a receipt regardless of amount.",
+            "POL-RCT-02": "Missing receipt handling \u2014 If a receipt is missing for an item that requires one, the item is not silently rejected \u2014 the claim is routed to Manual Review so the reviewer can request the receipt.",
+            "POL-APR-01": "Auto-approve tier \u2014 Total \u2264 $500: may be auto-approved by the agent if fully compliant.",
+            "POL-APR-02": "Manager tier \u2014 Total > $500 and \u2264 $2,000: eligible for approval, treated as approvable when fully compliant.",
+            "POL-APR-03": "Director / Manual-Review tier \u2014 Total > $2,000: exceeds the agent's auto-approval authority and must be routed to Manual Review (director approval required), even if otherwise compliant.",
+            "POL-TIME-01": "Submission window \u2014 Claims must be submitted within 30 days of the expense date. Late claims are routed to Manual Review."
+          },
+          "decision_guidance": "Approve: every item eligible, all receipts present, all within per-diem, total within an approvable tier. Partially Approve: claim valid but some amounts exceed caps; reimburse up to the cap. Reject: items ineligible with nothing reimbursable. Manual Review: any ambiguity, policy exception, high value, missing required receipt, or conflicting information. Prefer Manual Review over forcing a decision. Approval thresholds use reimbursable amounts after deductions."
+        }
+      },
+      {
+        "name": "check_eligibility",
+        "arguments": {
+          "claim_id": "CLM-003"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-CAT-01",
+            "POL-AIR-01"
+          ]
+        }
+      },
+      {
+        "name": "check_receipts",
+        "arguments": {
+          "claim_id": "CLM-003"
+        },
+        "output": {
+          "missing_docs": [],
+          "findings": [],
+          "policy_refs": [
+            "POL-RCT-01"
+          ]
+        }
+      },
+      {
+        "name": "calculate_limits",
+        "arguments": {
+          "claim_id": "CLM-003"
+        },
+        "output": {
+          "lines": [
+            {
+              "item_id": "I1",
+              "category": "airfare",
+              "claimed": 300.0,
+              "provisional_allowed": 300.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": []
+            },
+            {
+              "item_id": "I2",
+              "category": "lodging",
+              "claimed": 500.0,
+              "provisional_allowed": 400.0,
+              "provisional_deducted": 100.0,
+              "policy_refs": [
+                "POL-PD-02"
+              ]
+            },
+            {
+              "item_id": "I3",
+              "category": "meals",
+              "claimed": 140.0,
+              "provisional_allowed": 140.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": [
+                "POL-PD-01"
+              ]
+            }
+          ],
+          "provisional_allowed": 840.0,
+          "provisional_deducted": 100.0,
+          "findings": [
+            {
+              "code": "LIMIT_EXCEEDED",
+              "message": "I2: $500.00 claimed; $400.00 allowed after the $200.00 per-night cap; $100.00 excess.",
+              "policy_refs": [
+                "POL-PD-02"
+              ],
+              "item_ids": [
+                "I2"
+              ],
+              "review": false
+            }
+          ],
+          "policy_refs": [
+            "POL-PD-01",
+            "POL-PD-02"
+          ]
+        }
+      },
+      {
+        "name": "check_approval_threshold",
+        "arguments": {
+          "claim_id": "CLM-003"
+        },
+        "output": {
+          "tier": "MANAGER",
+          "candidate_amount": 840.0,
+          "findings": [],
+          "policy_refs": [
+            "POL-APR-02"
+          ]
+        }
+      },
+      {
+        "name": "check_timeliness",
+        "arguments": {
+          "claim_id": "CLM-003"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-TIME-01"
+          ]
+        }
+      }
+    ],
+    "result": {
+      "claim_id": "CLM-003",
+      "decision": "PARTIAL_APPROVE",
+      "approved_amount": 840.0,
+      "deducted_amount": 100.0,
+      "missing_docs": [],
+      "policy_refs": [
+        "POL-AIR-01",
+        "POL-APR-02",
+        "POL-CAT-01",
+        "POL-PD-01",
+        "POL-PD-02",
+        "POL-RCT-01",
+        "POL-TIME-01"
+      ],
+      "confidence": 0.95,
+      "explanation": "LIMIT_EXCEEDED: I2: $500.00 claimed; $400.00 allowed after the $200.00 per-night cap; $100.00 excess. (POL-PD-02) Final recommendation: PARTIAL_APPROVE; $840.00 approved and $100.00 deducted. Supporting checks: POL-AIR-01, POL-APR-02, POL-CAT-01, POL-PD-01, POL-PD-02, POL-RCT-01, POL-TIME-01.",
+      "tools_used": [
+        "lookup_policy",
+        "check_eligibility",
+        "check_receipts",
+        "calculate_limits",
+        "check_approval_threshold",
+        "check_timeliness"
+      ]
+    },
+    "recorded_duration_ms": 35218.82
+  },
+  "CLM-004": {
+    "source": "live-local-ollama",
+    "captured_at": "2026-10-02T19:54:58.304748+00:00",
+    "model": "qwen3.5:4b",
+    "contract_hash": "97456be521b4aeac17fb85e459bf882a0958c8bfb242add534f2fcc3d9fba6f9",
+    "turns": [
+      {
+        "turn": 1,
+        "input_hash": "a8563386e0671b73e3edd9570a17d04f4f1f5d2d8e2b676cff62beb0f6dc8b96",
+        "available_tools": [
+          "lookup_policy"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "lookup_policy",
+            "args": {
+              "claim_id": "CLM-004"
+            },
+            "id": "b3615a47-4ae9-423f-9353-a2b03a5f62aa",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 3212.43,
+        "token_usage": {
+          "prompt_eval_count": 744,
+          "eval_count": 33
+        }
+      },
+      {
+        "turn": 2,
+        "input_hash": "de6269f10e04d783a92e9bb4d02e357e907ec62790a2c4f74b034a672f8e220e",
+        "available_tools": [
+          "calculate_limits",
+          "check_approval_threshold",
+          "check_eligibility",
+          "check_receipts",
+          "check_timeliness"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "check_eligibility",
+            "args": {
+              "claim_id": "CLM-004"
+            },
+            "id": "f1859eeb-52c5-4f54-bee4-c6754fb7fafd",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_receipts",
+            "args": {
+              "claim_id": "CLM-004"
+            },
+            "id": "11031a48-37af-4708-9229-8e9837803795",
+            "type": "tool_call"
+          },
+          {
+            "name": "calculate_limits",
+            "args": {
+              "claim_id": "CLM-004"
+            },
+            "id": "9c612e28-e3a5-4558-966d-44dd4be1d33a",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_approval_threshold",
+            "args": {
+              "claim_id": "CLM-004"
+            },
+            "id": "567f7c33-1a9f-474d-957b-0f4a645153ee",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_timeliness",
+            "args": {
+              "claim_id": "CLM-004"
+            },
+            "id": "8f7adb97-c6b7-4ddc-9a39-27167c6ce567",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 13416.05,
+        "token_usage": {
+          "prompt_eval_count": 1875,
+          "eval_count": 170
+        }
+      },
+      {
+        "turn": 3,
+        "input_hash": "1c35e8d1373773c16806384c74015d44c940041b7a516792e81620bbccc566fd",
+        "available_tools": [
+          "submit_recommendation"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "submit_recommendation",
+            "args": {
+              "decision": "MANUAL_REVIEW",
+              "approved_amount": 0,
+              "deducted_amount": 0,
+              "policy_refs": [
+                "POL-CAT-01",
+                "POL-AIR-01",
+                "POL-RCT-01",
+                "POL-RCT-02",
+                "POL-PD-02",
+                "POL-TIME-01"
+              ],
+              "reason_codes": [
+                "AIRFARE_CLASS_EXCEPTION",
+                "RECEIPT_MISSING",
+                "CONFLICTING_INFORMATION"
+              ],
+              "summary": "Business-class airfare requires pre-approval verification; lodging receipt is missing; lodging count conflicts with trip dates. Claim routed to manual review for resolution."
+            },
+            "id": "e137aad8-9223-46c3-ad0d-a28b731ad872",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 16620.3,
+        "token_usage": {
+          "prompt_eval_count": 2436,
+          "eval_count": 191
+        }
+      }
+    ],
+    "tool_outputs": [
+      {
+        "name": "lookup_policy",
+        "arguments": {
+          "claim_id": "CLM-004"
+        },
+        "output": {
+          "policy_version": "b24d00b102c185fdfca2f07407da4287276391568cf8e6b9f081874c5533260c",
+          "rules": {
+            "POL-CAT-01": "Eligible categories \u2014 Reimbursable when incurred for a documented business purpose: Airfare (economy class only \u2014 see POL-AIR-01); Lodging (hotel room charges); Meals (subject to per-diem limits \u2014 see POL-PD-01); Ground transport (taxi, rideshare, train, rental car, parking); Conference / registration fees.",
+            "POL-CAT-02": "Ineligible items \u2014 Never reimbursable; rejected (deducted in full): Alcohol and minibar charges; Spa, gym, and personal entertainment; In-room movies, personal shopping, gifts; Traffic fines, penalties, and late fees; Any personal (non-business) expense.",
+            "POL-PD-01": "Meals \u2014 Maximum $75 per day. Amounts above the daily cap are deducted; the rest is reimbursed.",
+            "POL-PD-02": "Lodging \u2014 Maximum $200 per night. Amounts above the nightly cap are deducted; the rest is reimbursed.",
+            "POL-PD-03": "Ground transport \u2014 Maximum $50 per day. Amounts above the cap are deducted.",
+            "POL-AIR-01": "Airfare class \u2014 Only economy class airfare is reimbursable. Business/first-class fares are a policy exception and must be routed to Manual Review (not auto-deducted, because a pre-approval may exist).",
+            "POL-RCT-01": "Receipt required above $25 \u2014 Any single line item greater than $25 requires an attached, itemized receipt. Airfare and lodging always require a receipt regardless of amount.",
+            "POL-RCT-02": "Missing receipt handling \u2014 If a receipt is missing for an item that requires one, the item is not silently rejected \u2014 the claim is routed to Manual Review so the reviewer can request the receipt.",
+            "POL-APR-01": "Auto-approve tier \u2014 Total \u2264 $500: may be auto-approved by the agent if fully compliant.",
+            "POL-APR-02": "Manager tier \u2014 Total > $500 and \u2264 $2,000: eligible for approval, treated as approvable when fully compliant.",
+            "POL-APR-03": "Director / Manual-Review tier \u2014 Total > $2,000: exceeds the agent's auto-approval authority and must be routed to Manual Review (director approval required), even if otherwise compliant.",
+            "POL-TIME-01": "Submission window \u2014 Claims must be submitted within 30 days of the expense date. Late claims are routed to Manual Review."
+          },
+          "decision_guidance": "Approve: every item eligible, all receipts present, all within per-diem, total within an approvable tier. Partially Approve: claim valid but some amounts exceed caps; reimburse up to the cap. Reject: items ineligible with nothing reimbursable. Manual Review: any ambiguity, policy exception, high value, missing required receipt, or conflicting information. Prefer Manual Review over forcing a decision. Approval thresholds use reimbursable amounts after deductions."
+        }
+      },
+      {
+        "name": "check_eligibility",
+        "arguments": {
+          "claim_id": "CLM-004"
+        },
+        "output": {
+          "findings": [
+            {
+              "code": "AIRFARE_CLASS_EXCEPTION",
+              "message": "I1: business-class airfare requires checking pre-approval; do not automatically deduct it.",
+              "policy_refs": [
+                "POL-AIR-01"
+              ],
+              "item_ids": [
+                "I1"
+              ],
+              "review": true
+            }
+          ],
+          "policy_refs": [
+            "POL-CAT-01",
+            "POL-AIR-01"
+          ]
+        }
+      },
+      {
+        "name": "check_receipts",
+        "arguments": {
+          "claim_id": "CLM-004"
+        },
+        "output": {
+          "missing_docs": [
+            "I2: itemized lodging receipt"
+          ],
+          "findings": [
+            {
+              "code": "RECEIPT_MISSING",
+              "message": "I2: itemized lodging receipt is required and missing; request it before deciding.",
+              "policy_refs": [
+                "POL-RCT-01",
+                "POL-RCT-02"
+              ],
+              "item_ids": [
+                "I2"
+              ],
+              "review": true
+            }
+          ],
+          "policy_refs": [
+            "POL-RCT-01",
+            "POL-RCT-02"
+          ]
+        }
+      },
+      {
+        "name": "calculate_limits",
+        "arguments": {
+          "claim_id": "CLM-004"
+        },
+        "output": {
+          "lines": [
+            {
+              "item_id": "I1",
+              "category": "airfare",
+              "claimed": 2400.0,
+              "provisional_allowed": 2400.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": []
+            },
+            {
+              "item_id": "I2",
+              "category": "lodging",
+              "claimed": 600.0,
+              "provisional_allowed": 600.0,
+              "provisional_deducted": 0.0,
+              "policy_refs": [
+                "POL-PD-02"
+              ]
+            }
+          ],
+          "provisional_allowed": 3000.0,
+          "provisional_deducted": 0.0,
+          "findings": [
+            {
+              "code": "CONFLICTING_INFORMATION",
+              "message": "I2: stated 3 night(s) exceed the trip's 2; retain the supplied count and verify dates.",
+              "policy_refs": [
+                "POL-PD-02"
+              ],
+              "item_ids": [
+                "I2"
+              ],
+              "review": true
+            }
+          ],
+          "policy_refs": [
+            "POL-PD-02"
+          ]
+        }
+      },
+      {
+        "name": "check_approval_threshold",
+        "arguments": {
+          "claim_id": "CLM-004"
+        },
+        "output": {
+          "tier": "UNRESOLVED",
+          "candidate_amount": 3000.0,
+          "findings": [],
+          "policy_refs": [],
+          "note": "Provisional amount depends on unresolved eligibility or limits; do not infer director authority from gross claim amount."
+        }
+      },
+      {
+        "name": "check_timeliness",
+        "arguments": {
+          "claim_id": "CLM-004"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-TIME-01"
+          ]
+        }
+      }
+    ],
+    "result": {
+      "claim_id": "CLM-004",
+      "decision": "MANUAL_REVIEW",
+      "approved_amount": 0.0,
+      "deducted_amount": 0.0,
+      "missing_docs": [
+        "I2: itemized lodging receipt"
+      ],
+      "policy_refs": [
+        "POL-AIR-01",
+        "POL-CAT-01",
+        "POL-PD-02",
+        "POL-RCT-01",
+        "POL-RCT-02",
+        "POL-TIME-01"
+      ],
+      "confidence": 0.7,
+      "explanation": "AIRFARE_CLASS_EXCEPTION: I1: business-class airfare requires checking pre-approval; do not automatically deduct it. (POL-AIR-01) RECEIPT_MISSING: I2: itemized lodging receipt is required and missing; request it before deciding. (POL-RCT-01, POL-RCT-02) CONFLICTING_INFORMATION: I2: stated 3 night(s) exceed the trip's 2; retain the supplied count and verify dates. (POL-PD-02) The full $3000.00 remains pending; approved and deducted amounts are both zero until review. Calculated allowances are provisional.",
+      "tools_used": [
+        "lookup_policy",
+        "check_eligibility",
+        "check_receipts",
+        "calculate_limits",
+        "check_approval_threshold",
+        "check_timeliness"
+      ]
+    },
+    "recorded_duration_ms": 33296.81
+  },
+  "CLM-005": {
+    "source": "live-local-ollama",
+    "captured_at": "2026-10-02T19:55:55.287779+00:00",
+    "model": "qwen3.5:4b",
+    "contract_hash": "23351ba3018b8ec8411cc2b9c3ff23cd590158395c44a8bec7bfad8943c10221",
+    "turns": [
+      {
+        "turn": 1,
+        "input_hash": "2873dd185cfdd594813e1d54115b70673c7e784ae7823155f2529a857c92f08e",
+        "available_tools": [
+          "lookup_policy"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "lookup_policy",
+            "args": {
+              "claim_id": "CLM-005"
+            },
+            "id": "50a406b4-230f-41a0-ae2e-b5251914ce67",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 3056.57,
+        "token_usage": {
+          "prompt_eval_count": 680,
+          "eval_count": 33
+        }
+      },
+      {
+        "turn": 2,
+        "input_hash": "f551005fc9beb3eaf1b9f1ff8ca1515292effad21258fc7fb5d1fd2bb99f78a6",
+        "available_tools": [
+          "calculate_limits",
+          "check_approval_threshold",
+          "check_eligibility",
+          "check_receipts",
+          "check_timeliness"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "check_eligibility",
+            "args": {
+              "claim_id": "CLM-005"
+            },
+            "id": "60f59524-e800-4f3d-b1f4-27e6f28681cd",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_receipts",
+            "args": {
+              "claim_id": "CLM-005"
+            },
+            "id": "35cb5f1c-603b-4263-b33b-584e01be3bb4",
+            "type": "tool_call"
+          },
+          {
+            "name": "calculate_limits",
+            "args": {
+              "claim_id": "CLM-005"
+            },
+            "id": "5c45cfda-a656-432d-a268-9d90f0969655",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_approval_threshold",
+            "args": {
+              "claim_id": "CLM-005"
+            },
+            "id": "df719d99-208f-42d9-9e4d-8c458fc1d81e",
+            "type": "tool_call"
+          },
+          {
+            "name": "check_timeliness",
+            "args": {
+              "claim_id": "CLM-005"
+            },
+            "id": "a098ab8f-d308-45fd-b1df-c6a257808bb9",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 14243.6,
+        "token_usage": {
+          "prompt_eval_count": 1811,
+          "eval_count": 170
+        }
+      },
+      {
+        "turn": 3,
+        "input_hash": "e01f54497c418556b29167f4017361c8d99ad325061feac961550b8e61a8bef8",
+        "available_tools": [
+          "submit_recommendation"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "submit_recommendation",
+            "args": {
+              "decision": "MANUAL_REVIEW",
+              "approved_amount": 0,
+              "deducted_amount": 0,
+              "policy_refs": [
+                "POL-CAT-01",
+                "POL-PD-01",
+                "POL-RCT-01",
+                "POL-RCT-02"
+              ],
+              "reason_codes": [
+                "RECEIPT_MISSING"
+              ],
+              "summary": "Claim requires manual review due to missing itemized receipt for meals exceeding $25. Per POL-PD-01, only $75/day is allowed; excess $145 would be deducted if receipt were present."
+            },
+            "id": "5a5b4bec-e00a-4d20-b61b-4b3408abd4ae",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 14968.97,
+        "token_usage": {
+          "prompt_eval_count": 2241,
+          "eval_count": 178
+        }
+      },
+      {
+        "turn": 4,
+        "input_hash": "5bcc09c96c6ba70156671cf8a2dc9d935fe93b5d9b9d64fbb63cf7dd43d71b03",
+        "available_tools": [
+          "submit_recommendation"
+        ],
+        "content": "",
+        "tool_calls": [
+          {
+            "name": "submit_recommendation",
+            "args": {
+              "decision": "MANUAL_REVIEW",
+              "approved_amount": 0,
+              "deducted_amount": 0,
+              "policy_refs": [
+                "POL-CAT-01",
+                "POL-PD-01",
+                "POL-RCT-01",
+                "POL-RCT-02"
+              ],
+              "reason_codes": [
+                "RECEIPT_MISSING",
+                "LIMIT_EXCEEDED"
+              ],
+              "summary": "Claim requires manual review due to missing itemized receipt for meals exceeding $25. Per POL-PD-01, only $75/day is allowed; excess $145 would be deducted if receipt were present."
+            },
+            "id": "057a9ea1-6ab2-47b4-83d4-703468eb9dd4",
+            "type": "tool_call"
+          }
+        ],
+        "duration_ms": 8083.36,
+        "token_usage": {
+          "prompt_eval_count": 2461,
+          "eval_count": 180
+        }
+      }
+    ],
+    "tool_outputs": [
+      {
+        "name": "lookup_policy",
+        "arguments": {
+          "claim_id": "CLM-005"
+        },
+        "output": {
+          "policy_version": "b24d00b102c185fdfca2f07407da4287276391568cf8e6b9f081874c5533260c",
+          "rules": {
+            "POL-CAT-01": "Eligible categories \u2014 Reimbursable when incurred for a documented business purpose: Airfare (economy class only \u2014 see POL-AIR-01); Lodging (hotel room charges); Meals (subject to per-diem limits \u2014 see POL-PD-01); Ground transport (taxi, rideshare, train, rental car, parking); Conference / registration fees.",
+            "POL-CAT-02": "Ineligible items \u2014 Never reimbursable; rejected (deducted in full): Alcohol and minibar charges; Spa, gym, and personal entertainment; In-room movies, personal shopping, gifts; Traffic fines, penalties, and late fees; Any personal (non-business) expense.",
+            "POL-PD-01": "Meals \u2014 Maximum $75 per day. Amounts above the daily cap are deducted; the rest is reimbursed.",
+            "POL-PD-02": "Lodging \u2014 Maximum $200 per night. Amounts above the nightly cap are deducted; the rest is reimbursed.",
+            "POL-PD-03": "Ground transport \u2014 Maximum $50 per day. Amounts above the cap are deducted.",
+            "POL-AIR-01": "Airfare class \u2014 Only economy class airfare is reimbursable. Business/first-class fares are a policy exception and must be routed to Manual Review (not auto-deducted, because a pre-approval may exist).",
+            "POL-RCT-01": "Receipt required above $25 \u2014 Any single line item greater than $25 requires an attached, itemized receipt. Airfare and lodging always require a receipt regardless of amount.",
+            "POL-RCT-02": "Missing receipt handling \u2014 If a receipt is missing for an item that requires one, the item is not silently rejected \u2014 the claim is routed to Manual Review so the reviewer can request the receipt.",
+            "POL-APR-01": "Auto-approve tier \u2014 Total \u2264 $500: may be auto-approved by the agent if fully compliant.",
+            "POL-APR-02": "Manager tier \u2014 Total > $500 and \u2264 $2,000: eligible for approval, treated as approvable when fully compliant.",
+            "POL-APR-03": "Director / Manual-Review tier \u2014 Total > $2,000: exceeds the agent's auto-approval authority and must be routed to Manual Review (director approval required), even if otherwise compliant.",
+            "POL-TIME-01": "Submission window \u2014 Claims must be submitted within 30 days of the expense date. Late claims are routed to Manual Review."
+          },
+          "decision_guidance": "Approve: every item eligible, all receipts present, all within per-diem, total within an approvable tier. Partially Approve: claim valid but some amounts exceed caps; reimburse up to the cap. Reject: items ineligible with nothing reimbursable. Manual Review: any ambiguity, policy exception, high value, missing required receipt, or conflicting information. Prefer Manual Review over forcing a decision. Approval thresholds use reimbursable amounts after deductions."
+        }
+      },
+      {
+        "name": "check_eligibility",
+        "arguments": {
+          "claim_id": "CLM-005"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-CAT-01"
+          ]
+        }
+      },
+      {
+        "name": "check_receipts",
+        "arguments": {
+          "claim_id": "CLM-005"
+        },
+        "output": {
+          "missing_docs": [
+            "I1: itemized meals receipt"
+          ],
+          "findings": [
+            {
+              "code": "RECEIPT_MISSING",
+              "message": "I1: itemized meals receipt is required and missing; request it before deciding.",
+              "policy_refs": [
+                "POL-RCT-01",
+                "POL-RCT-02"
+              ],
+              "item_ids": [
+                "I1"
+              ],
+              "review": true
+            }
+          ],
+          "policy_refs": [
+            "POL-RCT-01",
+            "POL-RCT-02"
+          ]
+        }
+      },
+      {
+        "name": "calculate_limits",
+        "arguments": {
+          "claim_id": "CLM-005"
+        },
+        "output": {
+          "lines": [
+            {
+              "item_id": "I1",
+              "category": "meals",
+              "claimed": 220.0,
+              "provisional_allowed": 75.0,
+              "provisional_deducted": 145.0,
+              "policy_refs": [
+                "POL-PD-01"
+              ]
+            }
+          ],
+          "provisional_allowed": 75.0,
+          "provisional_deducted": 145.0,
+          "findings": [
+            {
+              "code": "LIMIT_EXCEEDED",
+              "message": "I1: $220.00 claimed; $75.00 allowed after the $75.00 per-day cap; $145.00 excess.",
+              "policy_refs": [
+                "POL-PD-01"
+              ],
+              "item_ids": [
+                "I1"
+              ],
+              "review": false
+            }
+          ],
+          "policy_refs": [
+            "POL-PD-01"
+          ]
+        }
+      },
+      {
+        "name": "check_approval_threshold",
+        "arguments": {
+          "claim_id": "CLM-005"
+        },
+        "output": {
+          "tier": "AUTO",
+          "candidate_amount": 75.0,
+          "findings": [],
+          "policy_refs": [
+            "POL-APR-01"
+          ]
+        }
+      },
+      {
+        "name": "check_timeliness",
+        "arguments": {
+          "claim_id": "CLM-005"
+        },
+        "output": {
+          "findings": [],
+          "policy_refs": [
+            "POL-TIME-01"
+          ]
+        }
+      }
+    ],
+    "result": {
+      "claim_id": "CLM-005",
+      "decision": "MANUAL_REVIEW",
+      "approved_amount": 0.0,
+      "deducted_amount": 0.0,
+      "missing_docs": [
+        "I1: itemized meals receipt"
+      ],
+      "policy_refs": [
+        "POL-APR-01",
+        "POL-CAT-01",
+        "POL-PD-01",
+        "POL-RCT-01",
+        "POL-RCT-02",
+        "POL-TIME-01"
+      ],
+      "confidence": 0.95,
+      "explanation": "RECEIPT_MISSING: I1: itemized meals receipt is required and missing; request it before deciding. (POL-RCT-01, POL-RCT-02) LIMIT_EXCEEDED: I1: $220.00 claimed; $75.00 allowed after the $75.00 per-day cap; $145.00 excess. (POL-PD-01) The full $220.00 remains pending; approved and deducted amounts are both zero until review. Calculated allowances are provisional.",
+      "tools_used": [
+        "lookup_policy",
+        "check_eligibility",
+        "check_receipts",
+        "calculate_limits",
+        "check_approval_threshold",
+        "check_timeliness"
+      ]
+    },
+    "recorded_duration_ms": 40399.63
+  }
+}

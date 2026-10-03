@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: travel_app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-travel_local_only}
+      POSTGRES_DB: travel_companion
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - travel_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U travel_app -d travel_companion"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+volumes:
+  travel_postgres:
